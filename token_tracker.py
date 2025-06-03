@@ -46,7 +46,10 @@ def print_summary(data):
     print(f"Price (USD): ${float(data['Price']):.8f}")
     print(f"24h Change: {data['Price change %']}%")
     print(f"FDV: ${int(float(data['FDV'])) / 1000000000:.2f}B")
-    print(f"Market Cap: ${int(float(data['Market cap'])) / 1000000000:.2f}B")
+    if data.get("Market cap"):
+        print(f"Market Cap: ${int(float(data['Market cap'])) / 1000000000:.2f}B")
+    else:
+        print("Market Cap: N/A")
 
 def save_to_csv(data, filename):
     write_header = not os.path.exists(filename)
